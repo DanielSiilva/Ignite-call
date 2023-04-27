@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import { Container, Form, FormError, Header } from './styles'
+import { api } from '@/lib/axios'
 
 // Regras de validação
 const registerFormSchema = z.object({
@@ -44,8 +45,16 @@ export default function Register() {
     }
   }, [router.query?.username, setValue])
 
-  function handleRegister(data: RegisterFormData) {
-    console.log(data)
+  // função para login
+  async function handleRegister(data: RegisterFormData) {
+    try {
+      await api.post('/users', {
+        name: data.name,
+        username: data.name,
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
