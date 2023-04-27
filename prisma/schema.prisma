@@ -10,10 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Sintaxe propria do prisma => no fim será convetido para lingaguem do banco de daods desejado
+
+// Model: Tabelas ou collection ;
+// @id => campo primary key ;
+// @default(uuid()) => id será feito de forma automatica ;
+// @unique => defini o campo como unico ;
+
+// @@map("users") => usado para criar o nome da tabela ;
+
+// Migration => historio de auterações 
+
 model User {
   id       String @id @default(uuid())
   username String @unique
   name     String
   created_at DateTime @default(now())
+
   @@map("users")
 }
