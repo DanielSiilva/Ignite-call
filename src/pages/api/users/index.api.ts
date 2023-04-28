@@ -14,6 +14,7 @@ export default async function handler(
 
   const { name, username } = req.body
 
+  // realiazando busca no banco de dados: verificando se o user já existe
   const userExists = await prisma.user.findUnique({
     where: {
       username,
@@ -33,6 +34,7 @@ export default async function handler(
     },
   })
 
+  // Todo cookie precisa de uma data de expiraçaõ. Podemos passar de duas forma => expires e maxAge
   setCookie({ res }, '@ignitecall:userId', user.id, {
     maxAge: 60 * 60 * 24 * 7, // 7 days
     path: '/',
