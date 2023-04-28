@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { setCookie } from 'nookies'
 
 // Precisamos definir qual o metodo que a requisição vai aceitar, senão aceita qualquer tipo de requisição ;
+// Fluxos de autenticação no Next
 
 export default async function handler(
   req: NextApiRequest,
