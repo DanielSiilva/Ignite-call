@@ -51,6 +51,13 @@ export function buildNextAuthOptions(
 
         return true
       },
+      // função que nos permite ter acesso aos dados do user no front
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        }
+      },
     },
   }
 }
