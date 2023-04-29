@@ -32,7 +32,6 @@ model User {
   @@map("users")
 }
 
-//integração com algum provider : google ou github, por exemplo. 
 model Account {
   id                  String  @id @default(cuid())
   user_id             String
@@ -51,7 +50,6 @@ model Account {
   @@map("accounts")
 }
 
-// Cada vez que o user realizar login com um maquina diferente
 model Session {
   id            String   @id @default(cuid())
   session_token String   @unique
