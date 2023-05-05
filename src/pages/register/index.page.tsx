@@ -39,7 +39,7 @@ export default function Register() {
 
   const router = useRouter()
 
-  // Busacando as informações vira parametro, usando o setValues, e sentando um novo valor atraves do paramento da url
+  // Buscando as informações vira parametro, usando o setValues, e sentando um novo valor atraves do paramento da url
   useEffect(() => {
     if (router.query.username) {
       setValue('username', String(router.query.username))
