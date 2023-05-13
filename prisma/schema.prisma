@@ -4,12 +4,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id         String   @id @default(uuid())
   username   String   @unique
@@ -21,9 +19,9 @@ model User {
   accounts      Account[]
   sessions      Session[]
   timeIntervals UserTimeInterval[]
+  Scheduling    Scheduling[]
   @@map("users")
 }
-
 model Account {
   id                  String  @id @default(cuid())
   user_id             String
@@ -41,7 +39,6 @@ model Account {
   @@unique([provider, provider_account_id])
   @@map("accounts")
 }
-
 model Session {
   id            String   @id @default(cuid())
   session_token String   @unique
@@ -50,8 +47,6 @@ model Session {
   user          User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   @@map("sessions")
 }
-
-
 model UserTimeInterval {
   id                    String @id @default(uuid())
   week_day              Int
@@ -60,4 +55,16 @@ model UserTimeInterval {
   user    User   @relation(fields: [user_id], references: [id])
   user_id String
   @@map("user_time_intervals")
+}
+
+model Scheduling {
+  id           String   @id @default(uuid())
+  date         DateTime
+  name         String
+  email        String
+  observations String?
+  created_at   DateTime @default(now())
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  @@map("schedulings")
 }
