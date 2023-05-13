@@ -25,10 +25,12 @@ export function CalendarStep() {
     : null
 
   useEffect(() => {
+    // Se não for selecionado um dia, retorna null
     if (!selectedDate) {
       return
     }
 
+    // Realizando chamada para api
     api
       .get(`/users/${username}/availability`, {
         params: {
